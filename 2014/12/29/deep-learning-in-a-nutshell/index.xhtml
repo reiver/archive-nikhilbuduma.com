@@ -522,11 +522,199 @@
 
 		<p>Putting all of this together, we can now compute the derivative of the error function with respect to each weight:</p>
 
-		<script type="math/tex;mode=display">\frac{\partial E}{\partial w_k} = \sum_i \frac{\partial y^{(i)}}{\partial w_k} \frac{\partial E}{\partial y^{(i)}} = -\sum_i x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)</script>
+		<!-- script type="math/tex;mode=display">\frac{\partial E}{\partial w_k} = \sum_i \frac{\partial y^{(i)}}{\partial w_k} \frac{\partial E}{\partial y^{(i)}} = -\sum_i x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>E</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>w</mi>
+						<mi>k</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mi>i</mi>
+			</munder>
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msup>
+						<mi>y</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>w</mi>
+						<mi>k</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>E</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msup>
+						<mi>y</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<mo>&#x2212;<!-- − --></mo>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mi>i</mi>
+			</munder>
+			<msubsup>
+				<mi>x</mi>
+				<mi>k</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msubsup>
+			<msup>
+				<mi>y</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msup>
+			<mrow>
+				<mo>(</mo>
+				<mrow>
+					<mn>1</mn>
+					<mo>&#x2212;<!-- − --></mo>
+					<msup>
+						<mi>y</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+				</mrow>
+				<mo>)</mo>
+			</mrow>
+			<mrow>
+				<mo>(</mo>
+				<mrow>
+					<msup>
+						<mi>t</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+					<mo>&#x2212;<!-- − --></mo>
+					<msup>
+						<mi>y</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+				</mrow>
+				<mo>)</mo>
+			</mrow>
+		</math>
 
 		<p>Thus, the final rule for modifying the weights becomes:</p>
 
-		<script type="math/tex;mode=display">\Delta w_k = \sum_i \epsilon x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)</script>
+		<!-- script type="math/tex;mode=display">\Delta w_k = \sum_i \epsilon x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mi mathvariant="normal">&#x0394;<!-- Δ --></mi>
+			<msub>
+				<mi>w</mi>
+				<mi>k</mi>
+			</msub>
+			<mo>=</mo>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mi>i</mi>
+			</munder>
+			<mi>&#x03F5;<!-- ϵ --></mi>
+			<msubsup>
+				<mi>x</mi>
+				<mi>k</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msubsup>
+			<msup>
+				<mi>y</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msup>
+			<mrow>
+				<mo>(</mo>
+				<mrow>
+					<mn>1</mn>
+					<mo>&#x2212;<!-- − --></mo>
+					<msup>
+						<mi>y</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+				</mrow>
+				<mo>)</mo>
+			</mrow>
+			<mrow>
+				<mo>(</mo>
+				<mrow>
+					<msup>
+						<mi>t</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+					<mo>&#x2212;<!-- − --></mo>
+					<msup>
+						<mi>y</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo stretchy="false">(</mo>
+							<mi>i</mi>
+							<mo stretchy="false">)</mo>
+						</mrow>
+					</msup>
+				</mrow>
+				<mo>)</mo>
+			</mrow>
+		</math>
 
 		<p>As you may notice, the new modification rule is just like the delta rule, except with extra multiplicative terms included to account for the logistic component of the sigmoidal neuron.</p>
 	</section>
@@ -540,46 +728,104 @@
 				Reference diagram for the derivation of the backpropagation algorithm
 			</figcaption>
 		</figure>
-		<p>The subscript we use will refer to the layer of the neuron. The symbol <script type="math/tex">y</script> will refer to the activity of a neuron, as usual. Similarly the symbol <script type="math/tex">z</script> will refer to the logit of a neuron. We start by taking a look at the base case of the dynamic programming problem, the error function derivatives at the output layer:</p>
+		<p>The subscript we use will refer to the layer of the neuron. The symbol <!-- script type="math/tex">y</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math> will refer to the activity of a neuron, as usual. Similarly the symbol <!-- script type="math/tex">z</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>z</mi></math> will refer to the logit of a neuron. We start by taking a look at the base case of the dynamic programming problem, the error function derivatives at the output layer:</p>
 
-<script type="math/tex;mode=display">
-    E = \frac{1}{2} \sum_{j \in output} \left(t_j - y_j\right)^2
-    \implies
-    \frac{\partial E}{\partial y_j} = -(t_j - y_j)
-</script>
+		<!-- script type="math/tex;mode=display">
+			E = \frac{1}{2} \sum_{j \in output} \left(t_j - y_j\right)^2
+			\implies
+			\frac{\partial E}{\partial y_j} = -(t_j - y_j)
+		</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mi>E</mi>
+			<mo>=</mo>
+			<mfrac>
+				<mn>1</mn>
+				<mn>2</mn>
+			</mfrac>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mi>j</mi>
+					<mo>&#x2208;<!-- ∈ --></mo>
+					<mi>o</mi>
+					<mi>u</mi>
+					<mi>t</mi>
+					<mi>p</mi>
+					<mi>u</mi>
+					<mi>t</mi>
+				</mrow>
+			</munder>
+			<msup>
+				<mrow>
+					<mo>(</mo>
+					<mrow>
+						<msub>
+							<mi>t</mi>
+							<mi>j</mi>
+						</msub>
+						<mo>&#x2212;<!-- − --></mo>
+						<msub>
+							<mi>y</mi>
+							<mi>j</mi>
+						</msub>
+					</mrow>
+					<mo>)</mo>
+				</mrow>
+				<mn>2</mn>
+			</msup>
+			<mspace width="thickmathspace" />
+			<mo stretchy="false">&#x27F9;<!-- ⟹ --></mo>
+			<mspace width="thickmathspace" />
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>E</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>y</mi>
+						<mi>j</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<mo>&#x2212;<!-- − --></mo>
+			<mo stretchy="false">(</mo>
+			<msub>
+				<mi>t</mi>
+				<mi>j</mi>
+			</msub>
+			<mo>&#x2212;<!-- − --></mo>
+			<msub>
+				<mi>y</mi>
+				<mi>j</mi>
+			</msub>
+			<mo stretchy="false">)</mo>
+		</math>
 
-		<p>Now we tackle the inductive step. Let's presume we have the error derivatives for layer <script type="math/tex">j</script>. We now aim to calculate the error derivatives for the layer below it, layer <script type="math/tex">i</script>. To do so, we must accumulate information for how the output of a neuron in layer <script type="math/tex">i</script> affects the logits of every neuron in layer <script type="math/tex">j</script>. This can be done as follows, using the fact that the partial derivative of the logit with respect to the incoming output data from the layer beneath is merely the weight of the connection <script type="math/tex">w_{ij}</script>:</p>
+		<p>Now we tackle the inductive step. Let's presume we have the error derivatives for layer <!-- script type="math/tex">j</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>j</mi></math>. We now aim to calculate the error derivatives for the layer below it, layer <!-- script type="math/tex">i</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math>. To do so, we must accumulate information for how the output of a neuron in layer <!-- script type="math/tex">i</script --> <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math> affects the logits of every neuron in layer <!-- script type="math/tex">j</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>j</mi></math>. This can be done as follows, using the fact that the partial derivative of the logit with respect to the incoming output data from the layer beneath is merely the weight of the connection <!-- script type="math/tex">w_{ij}</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>w</mi><mrow class="MJX-TeXAtom-ORD"><mi>i</mi><mi>j</mi></mrow></msub></math>:</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial E}{\partial y_i} = \sum_j \frac{dz_j}{dy_i} \frac{\partial E}{\partial z_j} = \sum_j w_{ij} \frac{\partial E}{\partial z_j}
-</script>
+		<script type="math/tex;mode=display">\frac{\partial E}{\partial y_i} = \sum_j \frac{dz_j}{dy_i} \frac{\partial E}{\partial z_j} = \sum_j w_{ij} \frac{\partial E}{\partial z_j}</script>
 
 		<p>Now we can use the following to complete the inductive step:</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial E}{\partial z_j} = \frac{dy_j}{dx_j} \frac{\partial E}{\partial y_j} = y_j(1-y_j) \frac{\partial E}{\partial y_j}
-</script>
+		<script type="math/tex;mode=display">\frac{\partial E}{\partial z_j} = \frac{dy_j}{dx_j} \frac{\partial E}{\partial y_j} = y_j(1-y_j) \frac{\partial E}{\partial y_j}</script>
 
 
-<p></p>
+		<p></p>
 		<p>Combining these two together, we can finally express the partial derivatives of layer <script type="math/tex">i</script> in terms of the partial derivatives of layer <script type="math/tex">j</script>.</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial E}{\partial y_i} = \sum_j w_{ij} y_j (1-y_j) \frac{\partial E}{\partial y_j}
-</script>
+		<script type="math/tex;mode=display">\frac{\partial E}{\partial y_i} = \sum_j w_{ij} y_j (1-y_j) \frac{\partial E}{\partial y_j}</script>
 
 		<p>Then once we've gone through the whole dynamic programming routine, having filled up the table appropriately with all of our partial derivatives (of the error function with respect to the hidden unit activities), we can then determine how the error changes with respect to the weights. This gives us how to modify the weights after each training example:</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial E}{\partial w_{ij}} = \frac{\partial z_j}{\partial w_{ij}} \frac{\partial E}{\partial z_j} = y_iy_j(1-y_j)\frac{\partial E}{\partial y_j}
-</script>
+		<script type="math/tex;mode=display">\frac{\partial E}{\partial w_{ij}} = \frac{\partial z_j}{\partial w_{ij}} \frac{\partial E}{\partial z_j} = y_iy_j(1-y_j)\frac{\partial E}{\partial y_j}</script>
 
 
 		<p>In order to do backpropagation with batching of training examples, we merely sum up the partial derivatives over all the training examples in the batch. This gives us the following modification formula:</p>
 
-<script type="math/tex;mode=display">
-    \Delta w_{ij} = -\sum_{batch}\epsilon y_iy_j(1-y_j)\frac{\partial E}{\partial y_j}
-</script>
+		<script type="math/tex;mode=display">\Delta w_{ij} = -\sum_{batch}\epsilon y_iy_j(1-y_j)\frac{\partial E}{\partial y_j}</script>
 
 		<p>We have succeeded in deriving the backpropagation algorithm for a feed-forward neural net utilizing sigmoidal neurons!</p>
 	</section>
