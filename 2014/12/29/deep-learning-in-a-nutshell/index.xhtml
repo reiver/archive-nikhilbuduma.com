@@ -378,7 +378,7 @@
 			</msub>
 		</math>
 
-		<script type="math/tex;mode=display">y = \frac{1}{1+e^{-z}}</script>
+		<!-- script type="math/tex;mode=display">y = \frac{1}{1+e^{-z}}</script -->
 		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
 			<mi>y</mi>
 			<mo>=</mo>
@@ -397,39 +397,136 @@
 				</mrow>
 			</mfrac>
 		</math>
-		<p>The neuron computes the weighted sum of its inputs, the <em>logit</em>, <script type="math/tex">z</script>. It then feeds <script type="math/tex">z</script> into the input function to compute <script type="math/tex">y</script>, its final output. These functions have very nice derivatives, which makes learning easy! For learning, we want to compute the gradient of the error function with respect to the weights. To do so, we start by taking the derivative of the logit, <script type="math/tex">z</script>, with respect to the inputs and the weights. By linearity of the logit:</p>
+		<p>The neuron computes the weighted sum of its inputs, the <em>logit</em>, <!-- script type="math/tex">z</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>z</mi></math>. It then feeds <!-- script type="math/tex">z</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>z</mi></math> into the input function to compute <!-- script type="math/tex">y</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math>, its final output. These functions have very nice derivatives, which makes learning easy! For learning, we want to compute the gradient of the error function with respect to the weights. To do so, we start by taking the derivative of the logit, <!-- script type="math/tex">z</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>z</mi></math>, with respect to the inputs and the weights. By linearity of the logit:</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial z}{\partial w_k} = x_k
-</script>
+		<!-- script type="math/tex;mode=display">\frac{\partial z}{\partial w_k} = x_k</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>z</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>w</mi>
+						<mi>k</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<msub>
+				<mi>x</mi>
+				<mi>k</mi>
+			</msub>
+		</math>
 
-<script type="math/tex;mode=display">
-    \frac{\partial z}{\partial x_k} = w_k
-</script>
+		<!-- script type="math/tex;mode=display">\frac{\partial z}{\partial x_k} = w_k</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>z</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>x</mi>
+						<mi>k</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<msub>
+				<mi>w</mi>
+				<mi>k</mi>
+			</msub>
+		</math>
 
 		<p>Also, quite surprisingly, the derivative of the output with respect to the logit is quite simple if you express it in terms of the output. Verifying this is left as an exercise for the reader:</p>
 
-<script type="math/tex;mode=display">
-    \frac{dy}{dz} = y(1-y)
-</script>
+		<!-- script type="math/tex;mode=display">\frac{dy}{dz} = y(1-y)</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mfrac>
+				<mrow>
+					<mi>d</mi>
+					<mi>y</mi>
+				</mrow>
+				<mrow>
+					<mi>d</mi>
+					<mi>z</mi>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<mi>y</mi>
+			<mo stretchy="false">(</mo>
+			<mn>1</mn>
+			<mo>&#x2212;<!-- − --></mo>
+			<mi>y</mi>
+			<mo stretchy="false">)</mo>
+		</math>
 
 		<p>We then use the chain rule to get the derivative of the output with respect to each weight:</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial y}{\partial w_k} = \frac{\partial z}{\partial w_k} \frac{dy}{dz} = x_ky(1-y)
-</script>
+		<!-- script type="math/tex;mode=display">\frac{\partial y}{\partial w_k} = \frac{\partial z}{\partial w_k} \frac{dy}{dz} = x_ky(1-y)</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>y</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>w</mi>
+						<mi>k</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<mfrac>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<mi>z</mi>
+				</mrow>
+				<mrow>
+					<mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
+					<msub>
+						<mi>w</mi>
+						<mi>k</mi>
+					</msub>
+				</mrow>
+			</mfrac>
+			<mfrac>
+				<mrow>
+					<mi>d</mi>
+					<mi>y</mi>
+				</mrow>
+				<mrow>
+					<mi>d</mi>
+					<mi>z</mi>
+				</mrow>
+			</mfrac>
+			<mo>=</mo>
+			<msub>
+				<mi>x</mi>
+				<mi>k</mi>
+			</msub>
+			<mi>y</mi>
+			<mo stretchy="false">(</mo>
+			<mn>1</mn>
+			<mo>&#x2212;<!-- − --></mo>
+			<mi>y</mi>
+			<mo stretchy="false">)</mo>
+		</math>
 
 		<p>Putting all of this together, we can now compute the derivative of the error function with respect to each weight:</p>
 
-<script type="math/tex;mode=display">
-    \frac{\partial E}{\partial w_k} = \sum_i \frac{\partial y^{(i)}}{\partial w_k} \frac{\partial E}{\partial y^{(i)}} = -\sum_i x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)
-</script>
+		<script type="math/tex;mode=display">\frac{\partial E}{\partial w_k} = \sum_i \frac{\partial y^{(i)}}{\partial w_k} \frac{\partial E}{\partial y^{(i)}} = -\sum_i x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)</script>
 
 		<p>Thus, the final rule for modifying the weights becomes:</p>
 
-<script type="math/tex;mode=display">
-    \Delta w_k = \sum_i \epsilon x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)
-</script>
+		<script type="math/tex;mode=display">\Delta w_k = \sum_i \epsilon x_k^{(i)}y^{(i)}\left(1-y^{(i)}\right)\left(t^{(i)} - y^{(i)}\right)</script>
 
 		<p>As you may notice, the new modification rule is just like the delta rule, except with extra multiplicative terms included to account for the logistic component of the sigmoidal neuron.</p>
 	</section>
