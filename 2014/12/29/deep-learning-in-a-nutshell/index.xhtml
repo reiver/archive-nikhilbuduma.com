@@ -290,19 +290,7 @@
 		</math>
 		<p>Now at this point you might be thinking, wait up... Why do we need to bother ourselves with this error function nonsense when we have a bunch of variables (weights) and we have a set of equations (one for each training example)? Couldn't we just solve this problem by setting up a system of linear system of equations? That would automaically give us an error of zero assuming that we have a consistent set of training examples, right?</p>
 		<p>That's a smart observation, but the insight unfortunately doesn't generalize well. Remember that although we're using a linear neuron here, linear neurons aren't used very much in practice because they're constrained in what they can learn. And the moment you start using nonlinear neurons like the sigmoidal neurons we talked about, we can no longer set up a system of linear equations!</p>
-		<p>
-			So maybe we can use an iterative approach instead that generalizes to nonlinear examples. Let's try to visualize how we might minimize the squared error over all of the training examples by simplifying the problem. Let's say we're dealing with a linear neuron with only two inputs (and thus only two weights,
-			<script type="math/tex">w_1</script>
-			and
-			<script type="math/tex">w_2</script>).
-			Then we can imagine a 3-dimensional space where the horizontal dimensions correspond to the weights
-			<script type="math/tex">w_1</script>
-			and
-			<script type="math/tex">w_2</script>,
-			and there is one vertical dimension that corresponds to the value of the error function
-			<script type="math/tex">E</script>.
-			So in this space, points in the horizontal plane correspond to different settings of the weights, and the height at those points corresponds to the error that we're incurring, summed over all training cases. If we consider the errors we make over all possible weights, we get a surface in this 3-dimensional space, in particular a quadratic bowl:
-		</p>
+		<p>So maybe we can use an iterative approach instead that generalizes to nonlinear examples. Let's try to visualize how we might minimize the squared error over all of the training examples by simplifying the problem. Let's say we're dealing with a linear neuron with only two inputs (and thus only two weights, <!-- script type="math/tex">w_1</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>w</mi><mn>1</mn></msub></math> and <!-- script type="math/tex">w_2</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>w</mi><mn>2</mn></msub></math>). Then we can imagine a 3-dimensional space where the horizontal dimensions correspond to the weights <!-- script type="math/tex">w_1</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>w</mi><mn>1</mn></msub></math> and <!-- script type="math/tex">w_2</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>w</mi><mn>2</mn></msub></math>, and there is one vertical dimension that corresponds to the value of the error function <!-- script type="math/tex">E</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>E</mi></math>. So in this space, points in the horizontal plane correspond to different settings of the weights, and the height at those points corresponds to the error that we're incurring, summed over all training cases. If we consider the errors we make over all possible weights, we get a surface in this 3-dimensional space, in particular a quadratic bowl:</p>
 		<figure>
 			<img src="quadraticerror3d.png" title="Quadratic Error Surface" alt="Quadratic Error Surface"/>
 			<figcaption>
@@ -321,23 +309,94 @@
 	</section>
 	<section>
 		<h2>Learning Rates and the Delta Rule</h2>
-		<p>In practice at each step of moving perpendicular to the contour, we need to determine how far we want to walk before recalculating our new direction. This distance needs to depend on the steepness of the surface. Why? The closer we are to the minimum, the shorter we want to step forward. We know we are close to the minimum, because the surface is a lot flatter, so we can use the steepness as an indicator of how close we are to the minimum. We multiply this measure of steepness with a pre-determined constant factor <script type="math/tex">\epsilon</script>, the <em>learning rate</em>. Picking the learning rate is a hard problem. If we pick a learning rate that's too small, we risk taking too long during the training process. If we pick a learning rate that's too big, we'll mostly likely start diverging away from the minimum (this pretty easy to visualize). Modern training algorithms adapt the learning rate to overcome this difficult challenge.</p>
-		<p>For those who are interested, putting all the pieces results in what is called the <em>delta rule</em> for training the linear neuron. The delta rule states that given a learning rate <script type="math/tex">\epsilon</script>, we ought to change the weight <script type="math/tex">w_k</script> at each iteration of training by <script type="math/tex">\Delta w_k = \sum_i \epsilon x_k^{(i)}(t^{(i)} - y^{(i)})</script>. Deriving this formula is left as an exercise for the experienced reader. For a hint, study our derivation for a sigmoidal neuron in the next section.</p>
+		<p>In practice at each step of moving perpendicular to the contour, we need to determine how far we want to walk before recalculating our new direction. This distance needs to depend on the steepness of the surface. Why? The closer we are to the minimum, the shorter we want to step forward. We know we are close to the minimum, because the surface is a lot flatter, so we can use the steepness as an indicator of how close we are to the minimum. We multiply this measure of steepness with a pre-determined constant factor <!-- script type="math/tex">\epsilon</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03F5;<!-- ϵ --></mi></math>, the <em>learning rate</em>. Picking the learning rate is a hard problem. If we pick a learning rate that's too small, we risk taking too long during the training process. If we pick a learning rate that's too big, we'll mostly likely start diverging away from the minimum (this pretty easy to visualize). Modern training algorithms adapt the learning rate to overcome this difficult challenge.</p>
+		<p>For those who are interested, putting all the pieces results in what is called the <em>delta rule</em> for training the linear neuron. The delta rule states that given a learning rate <!-- script type="math/tex">\epsilon</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x03F5;<!-- ϵ --></mi></math>, we ought to change the weight <!-- script type="math/tex">w_k</script --><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>w</mi><mi>k</mi></msub></math> at each iteration of training by:</p>
+		<!-- script type="math/tex">\Delta w_k = \sum_i \epsilon x_k^{(i)}(t^{(i)} - y^{(i)})</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mi mathvariant="normal">&#x0394;<!-- Δ --></mi>
+			<msub>
+				<mi>w</mi>
+				<mi>k</mi>
+			</msub>
+			<mo>=</mo>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mi>i</mi>
+			</munder>
+			<mi>&#x03F5;<!-- ϵ --></mi>
+			<msubsup>
+				<mi>x</mi>
+				<mi>k</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msubsup>
+			<mo stretchy="false">(</mo>
+			<msup>
+				<mi>t</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msup>
+			<mo>&#x2212;<!-- − --></mo>
+			<msup>
+				<mi>y</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msup>
+			<mo stretchy="false">)</mo>
+		</math>
+		<p>Deriving this formula is left as an exercise for the experienced reader. For a hint, study our derivation for a sigmoidal neuron in the next section.</p>
 		<p>Unfortunately, just taking the path of steepest descent doesn't always do the trick when we have nonlinear neurons. The error surface can get complicated and there could be multiple local minimum. As a result, using this procedure could potentially get us to a bad local minimum that isn't the global minimum. As a result, in practice, training neural nets involves a modification of gradient descent called <em>stochastic gradient descent</em>, that tries to use randomization and noise to find the global minimum with high probability on a complex error surface.</p>
 	</section>
 	<section>
 		<h2>Moving onto the Sigmoidal Neuron *</h2>
 		<p>This section and the next will get a little heavy with the math, so just be forewarned. If you're not comfortable with multivariate calculus, feel free to skip them and move onto the remaining sections. Otherwise, let's just dive right into it!</p>
 		<p>Let's recall the mechanism by which logistic neurons compute their output value from their inputs:</p>
-<script type="math/tex;mode=display">
-    z = \sum_k w_kx_k
-</script>
+		<!-- script type="math/tex;mode=display">z = \sum_k w_kx_k</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mi>z</mi>
+			<mo>=</mo>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mi>k</mi>
+			</munder>
+			<msub>
+				<mi>w</mi>
+				<mi>k</mi>
+			</msub>
+			<msub>
+				<mi>x</mi>
+				<mi>k</mi>
+			</msub>
+		</math>
 
-
-<script type="math/tex;mode=display">
-    y = \frac{1}{1+e^{-z}}
-</script>
-
+		<script type="math/tex;mode=display">y = \frac{1}{1+e^{-z}}</script>
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mi>y</mi>
+			<mo>=</mo>
+			<mfrac>
+				<mn>1</mn>
+				<mrow>
+					<mn>1</mn>
+					<mo>+</mo>
+					<msup>
+						<mi>e</mi>
+						<mrow class="MJX-TeXAtom-ORD">
+							<mo>&#x2212;<!-- − --></mo>
+							<mi>z</mi>
+						</mrow>
+					</msup>
+				</mrow>
+			</mfrac>
+		</math>
 		<p>The neuron computes the weighted sum of its inputs, the <em>logit</em>, <script type="math/tex">z</script>. It then feeds <script type="math/tex">z</script> into the input function to compute <script type="math/tex">y</script>, its final output. These functions have very nice derivatives, which makes learning easy! For learning, we want to compute the gradient of the error function with respect to the weights. To do so, we start by taking the derivative of the logit, <script type="math/tex">z</script>, with respect to the inputs and the weights. By linearity of the logit:</p>
 
 <script type="math/tex;mode=display">
