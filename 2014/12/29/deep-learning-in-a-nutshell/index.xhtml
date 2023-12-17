@@ -99,7 +99,42 @@
 					</mrow>
 				</msup>
 			</math>
-			neuron in the <script type="math/tex">k^{th}</script> layer with the <script type="math/tex">j^{th}</script> neuron in the <script type="math/tex">k+1^{st}</script> layer:
+			neuron in the
+			<!-- script type="math/tex">k^{th}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>k</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>t</mi>
+						<mi>h</mi>
+					</mrow>
+				</msup>
+			</math>
+			layer with the
+			<!-- script type="math/tex">j^{th}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>j</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>t</mi>
+						<mi>h</mi>
+					</mrow>
+				</msup>
+			</math>
+			neuron in the
+			<!-- script type="math/tex">k+1^{st}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<mi>k</mi>
+				<mo>+</mo>
+				<msup>
+					<mn>1</mn>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>s</mi>
+						<mi>t</mi>
+					</mrow>
+				</msup>
+			</math>
+			layer:
 		</p>
 		<figure>
 			<img src="neuralnetexample.png" title="Neural Net" alt="Neural Net"/>
@@ -110,7 +145,45 @@
 		<p>Similar to how neurons are generally organized in layers in the human brain, neurons in neural nets are often organized in layers as well, where neurons on the bottom layer receive signals from the inputs, where neurons in the top layers have their outlets connected to the "answer," and where are usually no connections between neurons in the same layer (although this is an optional restriction, more complex connectivities require more involved mathematical analysis). We also note that in this example, there are no connections that lead from a neuron in a higher layer to a neuron in a lower layer (i.e., no directed cycles). These neural networks are called <em>feed-forward</em> neural networks as opposed to their counterparts, which are called <em>recursive</em> neural networks (again these are much more complicated to analyze and train). For the sake of simplicity, we focus only on feed-forward networks throughout this discussion. Here's a set of some more important notes to keep in mind:</p>
 		<p>1) Although every layer has the same number of neurons in this example, this is not necessary.</p>
 		<p>2) It is not required that a neuron has its outlet connected to the inputs of every neuron in the next layer. In fact, selecting which neurons to connect to which other neurons in the next layer is an art that comes from experience. Allowing maximal connectivity will more often than not result in <em>overfitting</em>, a concept which we will discusss in more depth later.</p>
-		<p>3) The inputs and outputs are <em>vectorized</em> representations. For example, you might imagine a neural network where the inputs are the individual pixel RGB values in an image represented as a vector. The last layer might have 2 neurons which correspond to the answer to our problem: <script type="math/tex">[0, 1]</script> if the image contains a dog, <script type="math/tex">[1, 0]</script> if the image contains a cat, <script type="math/tex">[0, 0]</script> if it contains neither, and <script type="math/tex">[1, 1]</script> if it contains both.</p>
+		<p>
+			3) The inputs and outputs are <em>vectorized</em> representations. For example, you might imagine a neural network where the inputs are the individual pixel RGB values in an image represented as a vector. The last layer might have 2 neurons which correspond to the answer to our problem:
+			<!-- script type="math/tex">[0, 1]</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<mo stretchy="false">[</mo>
+				<mn>0</mn>
+				<mo>,</mo>
+				<mn>1</mn>
+				<mo stretchy="false">]</mo>
+			</math>
+			if the image contains a dog,
+			<!-- script type="math/tex">[1, 0]</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<mo stretchy="false">[</mo>
+				<mn>1</mn>
+				<mo>,</mo>
+				<mn>0</mn>
+				<mo stretchy="false">]</mo>
+			</math>
+			if the image contains a cat,
+			<!-- script type="math/tex">[0, 0]</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<mo stretchy="false">[</mo>
+				<mn>0</mn>
+				<mo>,</mo>
+				<mn>0</mn>
+				<mo stretchy="false">]</mo>
+			</math>
+			if it contains neither, and
+			<!-- script type="math/tex">[1, 1]</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<mo stretchy="false">[</mo>
+				<mn>1</mn>
+				<mo>,</mo>
+				<mn>1</mn>
+				<mo stretchy="false">]</mo>
+			</math>
+			if it contains both.
+		</p>
 		<p>4) The layers of neurons that lie sandwiched between the first layer of neurons (input layer) and the last layer of neurons (output layer), are called <em>hidden layers</em>. This is because this is where most of the magic is happening when the neural net tries to solve problems. Taking a look at the activities of hidden layers can tell you a lot about the features the network has learned to extract from the data.</p>
 	</section>
 	<section>
@@ -125,11 +198,111 @@
 				The neuron we want to train for the Dining Hall Problem
 			</figcaption>
 		</figure>
-		<p>Let's say we have a bunch of training examples. Then we can calculate what the neural network will output on the <script type="math/tex">i^{th}</script> training example using the simple formula in the diagram. We want to train the neuron so that we pick the optimal weights possible - the weights that minimize the errors we make on the training examples. In this case, let's say we want to minimize the square error over all of the training examples that we encounter. More formally, if we know that <script type="math/tex">t^{(i)}</script> is the true answer for the <script type="math/tex">i^{th}</script> training example and <script type="math/tex">y^{(i)}</script> is the value computed by the neural network, we want to minimize the value of the error function <script type="math/tex">E</script>:</p>
-<script type="math/tex; mode=display">E =\frac{1}{2}\sum_{i}(t^{(i)} - y^{(i)})^2</script>
+		<p>
+			Let's say we have a bunch of training examples. Then we can calculate what the neural network will output on the
+			<!-- script type="math/tex">i^{th}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>i</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>t</mi>
+						<mi>h</mi>
+					</mrow>
+				</msup>
+			</math>
+			training example using the simple formula in the diagram. We want to train the neuron so that we pick the optimal weights possible - the weights that minimize the errors we make on the training examples. In this case, let's say we want to minimize the square error over all of the training examples that we encounter. More formally, if we know that
+			<!-- script type="math/tex">t^{(i)}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>t</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mo stretchy="false">(</mo>
+						<mi>i</mi>
+						<mo stretchy="false">)</mo>
+					</mrow>
+				</msup>
+			</math>			
+			is the true answer for the
+			<!-- script type="math/tex">i^{th}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>i</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>t</mi>
+						<mi>h</mi>
+					</mrow>
+				</msup>
+			</math>
+			training example and
+			<!-- script type="math/tex">y^{(i)}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>y</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mo stretchy="false">(</mo>
+						<mi>i</mi>
+						<mo stretchy="false">)</mo>
+					</mrow>
+				</msup>
+			</math>			
+			is the value computed by the neural network, we want to minimize the value of the error function
+			<!-- script type="math/tex">E</script -->:
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<mi>E</mi>
+			</math>:
+		</p>
+		<!-- script type="math/tex; mode=display">E =\frac{1}{2}\sum_{i}(t^{(i)} - y^{(i)})^2</script -->
+		<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+			<mi>E</mi>
+			<mo>=</mo>
+			<mfrac>
+				<mn>1</mn>
+				<mn>2</mn>
+			</mfrac>
+			<munder>
+				<mo>&#x2211;<!-- ∑ --></mo>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mi>i</mi>
+				</mrow>
+			</munder>
+			<mo stretchy="false">(</mo>
+			<msup>
+				<mi>t</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msup>
+			<mo>&#x2212;<!-- − --></mo>
+			<msup>
+				<mi>y</mi>
+				<mrow class="MJX-TeXAtom-ORD">
+					<mo stretchy="false">(</mo>
+					<mi>i</mi>
+					<mo stretchy="false">)</mo>
+				</mrow>
+			</msup>
+			<msup>
+				<mo stretchy="false">)</mo>
+				<mn>2</mn>
+			</msup>
+		</math>
 		<p>Now at this point you might be thinking, wait up... Why do we need to bother ourselves with this error function nonsense when we have a bunch of variables (weights) and we have a set of equations (one for each training example)? Couldn't we just solve this problem by setting up a system of linear system of equations? That would automaically give us an error of zero assuming that we have a consistent set of training examples, right?</p>
 		<p>That's a smart observation, but the insight unfortunately doesn't generalize well. Remember that although we're using a linear neuron here, linear neurons aren't used very much in practice because they're constrained in what they can learn. And the moment you start using nonlinear neurons like the sigmoidal neurons we talked about, we can no longer set up a system of linear equations!</p>
-		<p>So maybe we can use an iterative approach instead that generalizes to nonlinear examples. Let's try to visualize how we might minimize the squared error over all of the training examples by simplifying the problem. Let's say we're dealing with a linear neuron with only two inputs (and thus only two weights, <script type="math/tex">w_1</script> and <script type="math/tex">w_2</script>). Then we can imagine a 3-dimensional space where the horizontal dimensions correspond to the weights <script type="math/tex">w_1</script> and <script type="math/tex">w_2</script>, and there is one vertical dimension that corresponds to the value of the error function <script type="math/tex">E</script>. So in this space, points in the horizontal plane correspond to different settings of the weights, and the height at those points corresponds to the error that we're incurring, summed over all training cases. If we consider the errors we make over all possible weights, we get a surface in this 3-dimensional space, in particular a quadratic bowl:</p>
+		<p>
+			So maybe we can use an iterative approach instead that generalizes to nonlinear examples. Let's try to visualize how we might minimize the squared error over all of the training examples by simplifying the problem. Let's say we're dealing with a linear neuron with only two inputs (and thus only two weights,
+			<script type="math/tex">w_1</script>
+			and
+			<script type="math/tex">w_2</script>).
+			Then we can imagine a 3-dimensional space where the horizontal dimensions correspond to the weights
+			<script type="math/tex">w_1</script>
+			and
+			<script type="math/tex">w_2</script>,
+			and there is one vertical dimension that corresponds to the value of the error function
+			<script type="math/tex">E</script>.
+			So in this space, points in the horizontal plane correspond to different settings of the weights, and the height at those points corresponds to the error that we're incurring, summed over all training cases. If we consider the errors we make over all possible weights, we get a surface in this 3-dimensional space, in particular a quadratic bowl:
+		</p>
 		<figure>
 			<img src="quadraticerror3d.png" title="Quadratic Error Surface" alt="Quadratic Error Surface"/>
 			<figcaption>
