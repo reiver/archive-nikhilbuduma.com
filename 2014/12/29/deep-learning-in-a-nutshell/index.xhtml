@@ -95,7 +95,7 @@
 			<figcaption>
 				The neuron we want to train for the Dining Hall Problem
 			</figcaption>
-		<figure>
+		</figure>
 		<p>Let's say we have a bunch of training examples. Then we can calculate what the neural network will output on the <script type="math/tex">i^{th}</script> training example using the simple formula in the diagram. We want to train the neuron so that we pick the optimal weights possible - the weights that minimize the errors we make on the training examples. In this case, let's say we want to minimize the square error over all of the training examples that we encounter. More formally, if we know that <script type="math/tex">t^{(i)}</script> is the true answer for the <script type="math/tex">i^{th}</script> training example and <script type="math/tex">y^{(i)}</script> is the value computed by the neural network, we want to minimize the value of the error function <script type="math/tex">E</script>:</p>
 <script type="math/tex; mode=display">E =\frac{1}{2}\sum_{i}(t^{(i)} - y^{(i)})^2</script>
 		<p>Now at this point you might be thinking, wait up... Why do we need to bother ourselves with this error function nonsense when we have a bunch of variables (weights) and we have a set of equations (one for each training example)? Couldn't we just solve this problem by setting up a system of linear system of equations? That would automaically give us an error of zero assuming that we have a consistent set of training examples, right?</p>
