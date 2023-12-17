@@ -70,7 +70,37 @@
 			</figcaption>
 		</figure>
 		<p>It feeds the weighted sum of the inputs into the <em>logistic function</em>. The logistic function returns a value between 0 and 1. When the weighted sum is very negative, the return value is very close to 0. When the weighted sum is very large and positive, the return value is very close to 1. For the more mathematically inclined, the logistic function is a good choice because it has a nice looking derivative, which makes learning a simpler process. But technical details aside, whatever function the neuron uses, the value it computes is transmitted to other neurons as its output. In practice, sigmoidal neurons are used much more often than linear neurons because they enable much more versatile learning algorithms compared to linear neurons.</p>
-		<p>A neural network comes about when we start hooking up neurons to each other, to the input data, and to the "outlets," which correspond to the network's answer to the learning problem. To make this structure easier to visualize, I've included a simple example of a neural net below. We let <script type="math/tex">w_{i,j}^{(k)}</script> be the weight of the link connecting the <script type="math/tex">i^{th}</script> neuron in the <script type="math/tex">k^{th}</script> layer with the <script type="math/tex">j^{th}</script> neuron in the <script type="math/tex">k+1^{st}</script> layer:</p>
+		<p>
+			A neural network comes about when we start hooking up neurons to each other, to the input data, and to the "outlets," which correspond to the network's answer to the learning problem. To make this structure easier to visualize, I've included a simple example of a neural net below. We let
+			<!-- script type="math/tex">w_{i,j}^{(k)}</script --> 
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msubsup>
+					<mi>w</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>i</mi>
+						<mo>,</mo>
+						<mi>j</mi>
+					</mrow>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mo stretchy="false">(</mo>
+						<mi>k</mi>
+						<mo stretchy="false">)</mo>
+					</mrow>
+				</msubsup>
+			</math>
+			be the weight of the link connecting the
+			<!-- script type="math/tex">i^{th}</script -->
+			<math xmlns="http://www.w3.org/1998/Math/MathML">
+				<msup>
+					<mi>i</mi>
+					<mrow class="MJX-TeXAtom-ORD">
+						<mi>t</mi>
+						<mi>h</mi>
+					</mrow>
+				</msup>
+			</math>
+			neuron in the <script type="math/tex">k^{th}</script> layer with the <script type="math/tex">j^{th}</script> neuron in the <script type="math/tex">k+1^{st}</script> layer:
+		</p>
 		<figure>
 			<img src="neuralnetexample.png" title="Neural Net" alt="Neural Net"/>
 			<figcaption>
